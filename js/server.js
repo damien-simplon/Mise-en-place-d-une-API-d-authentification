@@ -20,9 +20,15 @@ app.listen(port, function(err){
 });
 
 app.get('/', (req, res) => {
-    res.send("GET");
+    db.query(`SELECT id,prenom,email FROM user`, function(err, result, fields){
+        res.send(result);
+    });
 });
 
 app.post('/', (req, res) => {
-    res.send("POST");
+    db.query('INSERT INTO user (prenom,email,password) VALUES ("damien2","damien2@gmail.com","oui2")', function (err, result, fields){
+        console.log(result.insertId);
+        if (err) throw err;
+        res.send("entrée d'id " + result.insertId + " insérée");
+    });
 })
