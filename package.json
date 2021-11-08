@@ -2,9 +2,9 @@
   "name": "mise-en-place-d-une-api-d-authentification",
   "version": "1.0.0",
   "description": "mise en place d'une api d'authentification avec NodeJs, MongoDB, Express, JWT",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/damien-simplon/mise-en-place-d-une-API-d-authentification#readme",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-jwt": "^6.1.0",
-    "mysql": "^2.18.1"
+    "mongoose": "^6.0.12"
   }
 }
