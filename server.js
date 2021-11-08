@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const port = process.env.API_PORT || 4000;
 const connectDB = require('./db');
+const userRoutes = require('./routes/userRoutes');
 
 const start = async() => {
     try{
@@ -19,3 +20,5 @@ const start = async() => {
 };
 
 start();
+
+app.use('/api/users', userRoutes);
