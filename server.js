@@ -20,4 +20,4 @@ const start = async() => {
 
 start();
 
-app.use('/api/users', userRoutes);
+app.use('/api/users/', userRoutes);
