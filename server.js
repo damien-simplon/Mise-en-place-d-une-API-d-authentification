@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
-const port = process.env.API_PORT || 4000;
+const port = process.env.API_PORT || 3500;
 const connectDB = require('./db');
 const userRoutes = require('./routes/userRoutes');
 
@@ -21,3 +21,12 @@ const start = async() => {
 start();
 
 app.use('/api/users/', userRoutes);
+
+var jwt = require('express-jwt');
+
+app.get('/api/login/',
+  jwt({ secret: 'secrettokentropsecret', algorithms: ['HS256'] }),
+  function(req, res) {
+    if (!req.user.admin) return res.sendStatus(401);
+    res.sendStatus(200);
+  });
