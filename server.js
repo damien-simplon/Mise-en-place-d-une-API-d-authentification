@@ -5,28 +5,45 @@ const app = express();
 const port = process.env.API_PORT || 3500;
 const connectDB = require('./db');
 const userRoutes = require('./routes/userRoutes');
+var jwt = require('jsonwebtoken');
+const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
 
-const start = async() => {
-    try{
-        await connectDB();
-        app.listen(port, function(err){
-            if(err) console.log(err);
-            console.log("Server listening on port : " + port);
-        });
-    }catch(error){
-        console.log(error);
-    }
+// express url encoded
+app.use(express.urlencoded({ extended: false }));
+
+const start = async () => {
+	try {
+		await connectDB();
+		app.listen(port, function (err) {
+			if (err) console.log(err);
+			console.log('Server listening on port : ' + port);
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 start();
 
 app.use('/api/users/', userRoutes);
 
-var jwt = require('express-jwt');
+app.post('/api/login/', (req, res) => {
+	// Read username and password from request body
+	const { email, password } = req.body;
 
-app.get('/api/login/',
-  jwt({ secret: 'secrettokentropsecret', algorithms: ['HS256'] }),
-  function(req, res) {
-    if (!req.user.admin) return res.sendStatus(401);
-    res.sendStatus(200);
-  });
+	// Filter user from the users array by email and password
+	const user = user.find((u) => {
+		return u.email === email && u.password === password;
+	});
+
+	if (user) {
+		// Generate an access token
+		const accessToken = jwt.sign({ email: user.email, admin: user.admin }, accessTokenSecret);
+
+		res.json({
+			accessToken,
+		});
+	} else {
+		res.send('Username or password incorrect');
+	}
+});
