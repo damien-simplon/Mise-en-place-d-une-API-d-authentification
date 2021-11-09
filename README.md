@@ -1,4 +1,5 @@
 # mise-en-place-d-une-API-d-authentification
 npm i express
-npm i express-jwt
-npm i mysql
+npm i dotenv
+npm i mongoose
+npm i jsonwebtoken
