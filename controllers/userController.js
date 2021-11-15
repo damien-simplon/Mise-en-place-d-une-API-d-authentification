@@ -1,4 +1,6 @@
 const userModel = require('../models/userModel');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     getAllUsers: async (req, res) => {
@@ -34,7 +36,7 @@ module.exports = {
             return res.status(400).json({msg: 'User already exists'});
         }
 
-        encryptPassword = await bcrypt.hash(password, 10);
+        encryptedPassword = await bcrypt.hash(password, 10);
 
         const user = await userModel.create({
             name,
