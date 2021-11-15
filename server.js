@@ -26,24 +26,3 @@ const start = async () => {
 start();
 
 app.use('/api/users/', userRoutes);
-
-app.post('/api/login/', (req, res) => {
-	// Read username and password from request body
-	const { email, password } = req.body;
-
-	// Filter user from the users array by email and password
-	const user = user.find((u) => {
-		return u.email === email && u.password === password;
-	});
-
-	if (user) {
-		// Generate an access token
-		const accessToken = jwt.sign({ email: user.email, admin: user.admin }, accessTokenSecret);
-
-		res.json({
-			accessToken,
-		});
-	} else {
-		res.send('Username or password incorrect');
-	}
-});
