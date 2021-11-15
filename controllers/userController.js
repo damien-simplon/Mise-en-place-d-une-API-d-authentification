@@ -54,5 +54,32 @@ module.exports = {
 
         res.status(201).json({user});
         
+    },
+    login : async(req, res) => {
+        try{
+            const { email, password } = req.body;
+
+            if(!email || !password) {
+                return res.status(400).json({msg: 'Please enter all fields'});
+            }
+
+            const user = await userModel.findOne({email});
+
+            if(user && (await bcrypt.compare(password, user.password))) {
+                const token = jwt.sign(
+                    { userId: user._id, email },
+                    process.env.ACCESS_TOKEN_SECRET,
+                    { expiresIn: '1h' },
+                );
+
+                user.token = token;
+
+                res.status(200).json({user});
+            }else{
+                res.status(400).json({msg: 'Invalid credentials'});
+            }
+        } catch(err) {
+            console.log(err);
+        }
     }
 }
