@@ -6,8 +6,6 @@ const port = process.env.API_PORT || 3500;
 const connectDB = require('./db');
 const userRoutes = require('./routes/userRoutes');
 const registerLoginRoutes = require('./routes/registerLoginRoutes');
-var jwt = require('jsonwebtoken');
-const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
 
 // express url encoded
 app.use(express.urlencoded({ extended: false }));
