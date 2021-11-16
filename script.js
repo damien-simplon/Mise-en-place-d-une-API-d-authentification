@@ -6,7 +6,7 @@ window.onload = function () {
 		connexion.addEventListener('submit', (e) => {
             e.preventDefault();
             const form = new FormData(connexion);
-            fetch('/api/login', {
+            fetch('localhost:3000/api/users', {
                 method: 'POST',
                 body: form
             })
