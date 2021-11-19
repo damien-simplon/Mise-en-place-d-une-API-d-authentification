@@ -10,7 +10,7 @@ const registerLoginRoutes = require('./routes/registerLoginRoutes');
 
 // express url encoded
 app.use(express.urlencoded({ extended: false }));
-
+app.use(cors());
 // Add headers before the routes are defined
 app.use(function (req, res, next) {
 
