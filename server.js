@@ -12,7 +12,7 @@ const registerLoginRoutes = require('./routes/registerLoginRoutes');
 app.use(express.urlencoded({ extended: false }));
 
 var corsOptions = {
-	origin: 'https://damien-api-jwt.herokuapp.com/',
+	origin: true,
 	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 
