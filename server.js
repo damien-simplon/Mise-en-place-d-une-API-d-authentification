@@ -45,6 +45,8 @@ const start = async () => {
 
 start();
 
+app.options('/api/users/', cors());
 app.use('/api/users/', userRoutes);
 
+app.options('/api/', cors());
 app.use('/api/', registerLoginRoutes);
