@@ -12,7 +12,8 @@ const registerLoginRoutes = require('./routes/registerLoginRoutes');
 app.use(express.urlencoded({ extended: false }));
 
 // allow cross origin requests
-app.use(cors("Access-Control-Allow-Origin: *"));
+app.use(cors());
+app.options('*', cors());
 
 const start = async () => {
 	try {
