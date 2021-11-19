@@ -6,7 +6,7 @@ window.onload = function () {
 		connexion.addEventListener('submit', (e) => {
             e.preventDefault();
             const form = new FormData(connexion);
-            fetch('localhost:3000/api/users', {
+            fetch('https://damien-api-jwt.herokuapp.com/', {
                 method: 'POST',
                 body: form
             })
