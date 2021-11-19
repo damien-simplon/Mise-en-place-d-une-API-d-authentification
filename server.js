@@ -11,10 +11,7 @@ const registerLoginRoutes = require('./routes/registerLoginRoutes');
 // express url encoded
 app.use(express.urlencoded({ extended: false }));
 
-var corsOptions = {
-	origin: true,
-	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
+app.use(cors({credentials: true, origin: true}));
 
 const start = async () => {
 	try {
@@ -30,6 +27,6 @@ const start = async () => {
 
 start();
 
-app.use('/api/users/', cors(corsOptions), userRoutes);
+app.use('/api/users/', userRoutes);
 
-app.use('/api/', cors(corsOptions), registerLoginRoutes);
+app.use('/api/', registerLoginRoutes);
