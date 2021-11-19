@@ -11,7 +11,7 @@ const registerLoginRoutes = require('./routes/registerLoginRoutes');
 // express url encoded
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors({credentials: true, origin: 'https://damien-api-jwt.herokuapp.com/'}));
+app.use(cors());
 
 const start = async () => {
 	try {

@@ -8,6 +8,10 @@ window.onload = function () {
             const form = new FormData(connexion);
             fetch('https://damien-api-jwt.herokuapp.com/', {
                 method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': "*"
+				},
                 body: form
             })
             .then(response => response.json())
