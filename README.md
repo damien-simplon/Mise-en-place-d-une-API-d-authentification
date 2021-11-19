@@ -4,3 +4,4 @@ npm i dotenv
 npm i mongoose
 npm i jsonwebtoken
 npm i bcrypt
+npm i cors
