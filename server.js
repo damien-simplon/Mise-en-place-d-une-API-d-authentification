@@ -10,9 +10,7 @@ const registerLoginRoutes = require('./routes/registerLoginRoutes');
 
 // express url encoded
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({
-    origin: '*'
-}));
+app.use(cors({origin: 'https://damien-api-jwt.herokuapp.com/'}));
 // Add headers before the routes are defined
 app.use(function (req, res, next) {
 
