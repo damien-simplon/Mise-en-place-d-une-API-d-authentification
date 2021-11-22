@@ -8,6 +8,7 @@ window.onload = function () {
             const form = new FormData(connexion);
             fetch('http://localhost:3000/api/login/', {
                 method: 'POST',
+                mode: 'cors',
 				headers: {
 					'Content-Type': 'application/json'
 				},
@@ -32,6 +33,7 @@ window.onload = function () {
             const form = new FormData(inscription);
             fetch('http://localhost:3000/api/register/', {
                 method: 'PUT',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
