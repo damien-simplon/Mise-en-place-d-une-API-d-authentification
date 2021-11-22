@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 var cors = require('cors')
+const bodyParser = require('body-parser');
 const port = process.env.API_PORT || 3500;
 const connectDB = require('./db');
 const userRoutes = require('./routes/userRoutes');
@@ -11,6 +12,8 @@ const registerLoginRoutes = require('./routes/registerLoginRoutes');
 // express url encoded
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({origin: "*"}));
+app.use(express.json());
+app.use(bodyParser.json());
 
 const start = async () => {
 	try {
