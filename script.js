@@ -22,6 +22,7 @@ window.onload = function () {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data);
+                    localStorage.setItem('token', data);
                     window.location.href = "./read.html";
 				})
 				.catch((error) => console.error(error));
@@ -57,10 +58,11 @@ window.onload = function () {
 		fetch('http://localhost:3000/api/users/', {
 			method: 'GET',
 			mode: 'cors',
+            authorization: 'Bearer ' + localStorage.getItem('token'),
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
-			},
+			}
 		})
 			.then((response) => response.json())
 			.then((data) => {
