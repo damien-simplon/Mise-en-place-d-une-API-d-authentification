@@ -24,7 +24,9 @@ module.exports = {
         res.status(204).json({user});
     },
     register : async(req, res) => {
+        console.log(req.body);
         const { name, email, password } = req.body;
+        console.log(name, email, password);
 
         if(!name || !email || !password) {
             return res.status(400).json({msg: 'Please enter all fields'});
@@ -73,8 +75,8 @@ module.exports = {
                 );
 
                 user.token = token;
-
-                res.status(200).json({user});
+                
+                res.status(200).json(token);
             }else{
                 res.status(400).json({msg: 'Invalid credentials'});
             }
