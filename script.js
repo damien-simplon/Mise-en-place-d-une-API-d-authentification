@@ -1,54 +1,71 @@
 window.onload = function () {
 	const connexion = document.getElementById('connexion');
 	const inscription = document.getElementById('inscription');
-	
-	if(connexion){
+	const read = document.getElementById('read');
+
+	if (connexion) {
 		connexion.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = new FormData(connexion);
-            fetch('http://localhost:3000/api/login/', {
-                method: 'POST',
-                mode: 'cors',
+			e.preventDefault();
+			var datas = {
+				email: document.getElementById('emailCo').value,
+				password: document.getElementById('passwordCo').value,
+			};
+			fetch('http://localhost:3000/api/login/', {
+				method: 'POST',
+				mode: 'cors',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
 				},
-                body: form
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.success){
-                    console.log("connexion réussie");
-                }
-                else{
-                    alert(data.message);
-                }
-            })
-            .catch(error => console.error(error));
+				body: JSON.stringify(datas),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+                    window.location.href = "./read.html";
+				})
+				.catch((error) => console.error(error));
 		});
 	}
 
-    if(inscription){
-        inscription.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = new FormData(inscription);
-            fetch('http://localhost:3000/api/register/', {
-                method: 'PUT',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: form
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.success){
-                    console.log("inscription réussie");
-                }
-                else{
-                    alert(data.message);
-                }
-            })
-            .catch(error => console.error(error));
-        });
-    }
-}
+	if (inscription) {
+		inscription.addEventListener('submit', (e) => {
+			e.preventDefault();
+			var datas = {
+				email: document.getElementById('emailIn').value,
+				name: document.getElementById('name').value,
+				password: document.getElementById('passwordIn').value,
+			};
+			console.log(datas);
+			fetch('http://localhost:3000/api/register/', {
+				method: 'POST',
+				mode: 'cors',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
+				body: JSON.stringify(datas),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+				})
+				.catch((error) => console.error(error));
+		});
+	}
+	if (read) {
+		fetch('http://localhost:3000/api/users/', {
+			method: 'GET',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((error) => console.error(error));
+	}
+};
