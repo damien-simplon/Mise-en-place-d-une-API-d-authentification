@@ -55,13 +55,14 @@ window.onload = function () {
 		});
 	}
 	if (read) {
+        const bearer = 'Bearer ' + localStorage.getItem('token');
 		fetch('http://localhost:3000/api/users/', {
 			method: 'GET',
 			mode: 'cors',
-            authorization: 'Bearer ' + localStorage.getItem('token'),
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'application/x-www-form-urlencoded',
 				Accept: 'application/json',
+                authorization: bearer,
 			}
 		})
 			.then((response) => response.json())
