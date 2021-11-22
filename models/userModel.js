@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true,"password is required"]
     },
+    bio:{
+        type: String,
+        default : ""
+    },
     admin: {
         type: Boolean,
         default: false

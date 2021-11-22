@@ -22,8 +22,8 @@ window.onload = function () {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data);
-                    localStorage.setItem('token', data);
-                    window.location.href = "./read.html";
+                    localStorage.setItem('user', data._id);
+                    //window.location.href = "./read.html";
 				})
 				.catch((error) => console.error(error));
 		});
@@ -55,14 +55,13 @@ window.onload = function () {
 		});
 	}
 	if (read) {
-        const bearer = 'Bearer ' + localStorage.getItem('token');
-		fetch('http://localhost:3000/api/users/', {
+        const id = localStorage.getItem('user');
+		fetch('http://localhost:3000/api/users/' + id, {
 			method: 'GET',
 			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
 				Accept: 'application/json',
-                authorization: bearer,
 			}
 		})
 			.then((response) => response.json())

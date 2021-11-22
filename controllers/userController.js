@@ -74,9 +74,8 @@ module.exports = {
                     { expiresIn: '1h' },
                 );
 
-                user.token = token;
-                
-                res.status(200).json(token);
+                res.cookie('token', token, { httpOnly: true });
+                res.status(200).json({user});
             }else{
                 res.status(400).json({msg: 'Invalid credentials'});
             }
