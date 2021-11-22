@@ -47,7 +47,7 @@ module.exports = {
         });
 
         const token = jwt.sign(
-            { userId: user._id, email },
+            { userId: user._id, email: user.email },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: '1h' },
         );
@@ -69,7 +69,7 @@ module.exports = {
 
             if(user && (await bcrypt.compare(password, user.password))) {
                 const token = jwt.sign(
-                    { userId: user._id },
+                    { userId: user._id, email: user.email },
                     process.env.ACCESS_TOKEN_SECRET,
                     { expiresIn: '1h' },
                 );
