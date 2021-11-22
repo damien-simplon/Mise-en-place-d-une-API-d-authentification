@@ -1,23 +1,23 @@
+require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['x-access-token'];
+    const authHeader = req.headers['authorization'];
 
-    if(!token) {
-        return res.status(403).json({
-            message: 'No token provided.'
-        });
-    }
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
 
-    try{
-        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        req.user = decoded;
-    } catch(err) {
-        return res.status(500).json({
-            message: 'Error while verifying token.'
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+
+            req.user = user;
+            next();
         });
+    } else {
+        res.sendStatus(401);
     }
-    return next();
 };
 
 module.exports = verifyToken;
