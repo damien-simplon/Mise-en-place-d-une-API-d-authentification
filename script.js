@@ -29,7 +29,7 @@ window.onload = function () {
     if(inscription){
         inscription.addEventListener('submit', (e) => {
             e.preventDefault();
-            const form = new Formadata(inscription);
+            const form = new FormData(inscription);
             fetch('http://localhost:3000/api/register/', {
                 method: 'PUT',
                 headers: {
