@@ -6,18 +6,17 @@ window.onload = function () {
 		connexion.addEventListener('submit', (e) => {
             e.preventDefault();
             const form = new FormData(connexion);
-            fetch('https://damien-api-jwt.herokuapp.com/', {
+            fetch('http://localhost:3000/api/login/', {
                 method: 'POST',
 				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': "*"
+					'Content-Type': 'application/json'
 				},
                 body: form
             })
             .then(response => response.json())
             .then(data => {
                 if(data.success){
-                    window.location.href = '/';
+                    console.log("connexion réussie");
                 }
                 else{
                     alert(data.message);
@@ -26,4 +25,28 @@ window.onload = function () {
             .catch(error => console.error(error));
 		});
 	}
+
+    if(inscription){
+        inscription.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = new Formadata(inscription);
+            fetch('http://localhost:3000/api/register/', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: form
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success){
+                    console.log("inscription réussie");
+                }
+                else{
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error(error));
+        });
+    }
 }
