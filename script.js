@@ -22,8 +22,8 @@ window.onload = function () {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data);
-                    localStorage.setItem('user', data._id);
-                    //window.location.href = "./read.html";
+                    localStorage.setItem('user', data.user._id);
+                    window.location.href = "./read.html";
 				})
 				.catch((error) => console.error(error));
 		});
@@ -60,7 +60,7 @@ window.onload = function () {
 			method: 'GET',
 			mode: 'cors',
 			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
+				'Content-Type': 'application/json',
 				Accept: 'application/json',
 			}
 		})
