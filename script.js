@@ -5,7 +5,6 @@ window.onload = function () {
 
 	if (connexion) {
 		connexion.addEventListener('submit', (e) => {
-			e.preventDefault();
 			var datas = {
 				email: document.getElementById('emailCo').value,
 				password: document.getElementById('passwordCo').value,
@@ -23,7 +22,6 @@ window.onload = function () {
 				.then((data) => {
 					console.log(data);
                     localStorage.setItem('user', data.user._id);
-                    window.location.href = "./read.html";
 				})
 				.catch((error) => console.error(error));
 		});
