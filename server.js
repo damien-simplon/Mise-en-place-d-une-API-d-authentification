@@ -11,11 +11,11 @@ const userRoutes = require('./routes/userRoutes');
 const registerLoginRoutes = require('./routes/registerLoginRoutes');
 
 // express url encoded
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors({origin: "*"}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors({origin: "*"}));
 
 const start = async () => {
 	try {
